@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Cart</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <br><br>
+        <h1 style="padding: 15px;">Hurry up! Enjoy shopping!</h1>
+        <br><br>
+        <div style="text-align: left; padding-left: 30px;">
+            <% if ( rowCount > 0 ) { %>
+            <a class="btn btn-info btn-lg" href="/user/clear_cart">
+                <h5>Clear Cart</h5>
+            </a>
+            <br><br>
+            <h3><a href="/users/products">Shop More!</a></h3>
+            <% } %>
+        </div>
+    </div>
+    <br>
+    <div style="padding-left: 30px;">
+        <div class="card-columns">
+            <% for( var c of cart ) { %>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <h1><%= c.product_name %></h1>
+                        <h6>Price : <%= c.product_price %></h6>
+                        <h6>Quantity : <%= c.qty %></h6>
+                        <p>
+                        <h3 style="color : blue;">Total Price : <%= c.total_price %></h3>
+                        </p>
+                        <div style="text-align: end;">
+                            <a class="btn  btn-lg btn-danger" href="/users/product/<%= c.id %>">Remove From Cart</a>
+                        </div>
+                </div>
+            </div>
+            <% } %>
+            <div class="card bg-light " style="max-width: 40rem;">
+                <div class="card-header">
+                    <h1>Total Price</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                        <% for( var c of cart ) { %>
+                        <tr>
+                            <td><%= c.product_name %></td>
+                            <td><%= c.product_price %></td>
+                            <td><%= c.qty %></td>
+                            <th style="color : blue;"><%= c.total_price %> </th>
+                        </tr>
+                        <% } %>
+                       </tbody>
+                    </table>
+
+                    <% if (total > 0) { %>
+                    <form>
+                        <h4 style="color : blue;">Sub-Total : <%= total %> Rs</h4>
+                        <div style="text-align: end; padding-right: 10px;">
+                            <a class="btn btn-lg btn-success" href="/users/buy/<%= total %>">Buy Now</a>
+                        </div>
+                    </form>
+                    <% } %>
+                    <% if (total == 0) { %>
+                    <div style="text-align: center;  padding-right: 10px; color : green;">
+                        <h2>Your cart is empty!</h2>
+                        <h3><a href="/users/products">Shop Now!</a></h3>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

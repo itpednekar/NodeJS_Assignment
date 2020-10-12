@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <title>Product</title>
+</head>
+
+<body>
+    <div style="text-align: end; padding-left: 10px;">
+        <a class="button" href="/users/cart">
+            <i class="fa fa-shopping-cart" style="font-size:24px"></i>
+        </a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="button" href="/users/logout">Logout</a> &nbsp;&nbsp;
+    </div>
+
+    <div style="text-align: center;">
+        <h2>List of Product</h2>
+        <table class="u-full-width">
+            <thead>
+                <th style="text-align: center;">Id</th>
+                <th style="text-align: center;">Name</th>
+                <th style="text-align: center;">Price</th>
+                <th style="text-align: center;">Quantity</th>
+                <th style="text-align: center;">Action</th>
+            </thead>
+            <tbody>
+                <% for( var p of products) { %>
+                <form action="/users/addToCarts/<%= p.id %>/<%= p.name %>/<%= p.price %>" method="POST">
+                    <tr>
+                        <td style="text-align: center;"> <%= p.id %> </td>
+                        <td style="text-align: center;"> <%= p.name %> </td>
+                        <td style="text-align: center;"> <%= p.price %> </td>
+                        <td style="text-align: center;">
+                            <input  type="number" id="qty" name="qty"  value="1" placeholder="Enter quantity" min="1">
+                        </td>
+                        <td style="text-align: center;">
+                        <input class="button button-primary" type="submit" value="Add to cart">
+                        </td>
+                    </tr>
+                </form>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,3 +1,7 @@
+git clone https://github.com/itpednekar/NodeJS_Assignment.git
+cd NodeJS_Assignment
+npm install
+
 To start the server
     nodemon server.js 
 
